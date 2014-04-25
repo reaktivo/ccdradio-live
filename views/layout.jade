@@ -5,9 +5,28 @@ html.no-js
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title= title
+    link(href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet")
     != css('main')
     != js('modernizr')
+    script.
+      WebFontConfig = {
+        google: { families: [ 'Karla:400,400italic,700,700italic:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })()
   body
     block content
+    footer
+      a.sep(href="#") SEP
+      a.conaculta(href="#") Conaculta
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
-    != js('main')
+    block scripts
+      != js('main')
+

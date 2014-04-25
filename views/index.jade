@@ -1,4 +1,85 @@
 extends layout
 
 block content
-  h1= title
+
+  script.
+    window.STREAM = !{JSON.stringify(locals.stream)}
+
+  audio#stream(src=stream.href)
+
+  #now
+    span.now-playing
+
+  #live
+    .texture
+    .image.one
+    .image.two
+  a#listen(href="#")
+    i.play.fa.fa-play
+    i.pause.fa.fa-pause.hidden
+    span.text Escucha
+
+  #what(href="#")
+    a(href="#programacion") Programación
+    span.spacer |
+    a(href="#contacto") Contacto
+    span.spacer |
+    a(href="#acerca") Acerca de
+
+  #programacion(style="display:none")
+    .lunes
+      h2 Lunes
+      .show
+        span.time De 10 a 12
+        h3 Ositos Arritmicos de Lemuria
+        span.who Con Ricardo Pholenz
+    .martes
+      h2 Martes
+      .show
+        span.time De 10 a 12
+        h3 Mecánica Instrumental
+        span.who Con Alan Rabchinski
+    .miercoles
+      h2 Miercoles
+      .show
+        span.time De 9 a 11
+        h3 Sound Check
+        span.who Alejandro Misteró
+    .jueves
+      h2 Jueves
+      .show
+        span.time De 10 a 12
+        h3 Industria Musical
+        span.who Con Tomás Davo
+      .show
+        span.time De 12 a 2
+        h3 Los Sueños de la Nación
+        span.who Con Jorge Antonio P. E.
+    .viernes
+      h2 Viernes
+      .show
+        span.time De 12 a 1
+        h3 Cine más Allá
+        span.who Con Mara y Garbiñe
+
+
+
+
+  #warning
+    p.
+      Actualmente nos encontramos trabajando en nuestra página web y cabina de radio, este es un video en tiempo real de nuestro proceso.
+    p.
+      Te invitamos a escuchar nuestra programación.
+  #about(style="display:none")
+    :markdown
+      **CCD Radio** es una plataforma que genera propuestas de radio
+      originales con la intención de conformar una audiencia interesada
+      en conocer otras maneras de acercarse y resolver, formal y
+      temáticamente,  asuntos vinculados al transcurrir de nuestro tiempo,
+      donde la cultura digital ha contribuido a la reinvención de los medios
+      de comunicación, redefiniendo al mismo tiempo el papel de la información
+      en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
+      y voz en el terreno de lo público.
+
+append scripts
+  script(src="http://240891823.r.professionalcdn.com/jquery.shoutcast.easy.min.js?host=#{stream.host}&port=#{stream.port}&stream=1")
