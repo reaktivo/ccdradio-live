@@ -1,4 +1,7 @@
 #= require jquery.shoutcast
+#= require underscore
+
+{ toArray, each } = _
 
 class Main
 
@@ -6,13 +9,22 @@ class Main
   containers: $('.image')
   index: 0
   isPlaying: no
+  els: ['#warning', '#listen', '#what']
 
   constructor: ->
-    $('#what a[href=#acerca]').click @toggle_about
-    $('#what a[href=#programacion]').click @toggle_programacion
+    $('#what a[href=#acerca]').click (e) =>
+      e.preventDefault()
+      @modal('#about')
+
+    $('#what a[href=#programacion]').click (e) =>
+      e.preventDefault()
+      @modal('#programacion')
+
     $('#listen').click @toggle_audio
+    $('#close').click (e) =>
+      e.preventDefault()
+      do @hide
     do @setup_shoutcast
-    # do @update_image
 
   toggle_audio: (e) =>
     e.preventDefault()
@@ -25,40 +37,34 @@ class Main
       $('.pause', '#listen').show()
       $('.play', '#listen').hide()
     @isPlaying = not @isPlaying
-
-  update_image: =>
-  #   container = $ @containers[@index++]
-  #   other_container = $ @containers.not(container)
-  #   @index = 0 if @index >= @containers.length
-  #   rand_path = @path + "?" + Math.random()
-  #   $('<img>').attr('src', rand_path).load ->
-  #     $(this).remove()
-  #     container
-  #       .css backgroundImage: "url(#{rand_path})"
-  #       .show()
-  #     setTimeout (=> other_container.hide()), 50
-  #     setTimeout @update_image, 1000
-
-  toggle_about: =>
-    $('#warning').fadeToggle()
-    $('#listen').fadeToggle()
-    $('#about').fadeToggle()
-    no
-
-  toggle_programacion: =>
-    $('#programacion').fadeToggle()
-    $('#warning').fadeToggle()
-    $('#listen').fadeToggle()
-    no
+    $('body').toggleClass 'is-playing', @isPlaying
 
   setup_shoutcast: =>
-    # $.SHOUTcast
-    #   host: window.STREAM.hostname
-    #   port: window.STREAM.port
-    #   stats: @update_status
-    # .startStats()
+    $.SHOUTcast
+      host: window.STREAM.hostname
+      port: window.STREAM.port
+      stats: @update_status
+    .startStats()
+
+  modal: (el, time = 500) =>
+    fadeIn = => @modalEl.delay(time).fadeIn()
+    if @modalEl
+      @modalEl.fadeOut(fadeIn)
+    else
+      fadeIn()
+    @modalEl = $(el)
+    $('#close').fadeIn()
+
+    each @els, (sel) ->
+      $(sel).fadeOut()
+
+  hide: (time = 500) =>
+    @modalEl.fadeOut()
+    $('#close').fadeOut()
+    each @els, (sel) =>
+      $(sel).delay(time).fadeIn()
 
   update_status: ->
     $('.now-playing').text @get 'songtitle'
 
-$(document).ready -> new Main
+$(document).ready -> window.app = new Main

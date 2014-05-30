@@ -12,6 +12,15 @@ body
   background url("../img/loop.gif") no-repeat center center
   background-size cover
 
+#close
+  background url("../img/close.svg") no-repeat center center
+  width 80px
+  height 80px
+  position absolute
+  top 20px
+  right 20px
+  display block
+
 #stream
   display none
 
@@ -38,6 +47,39 @@ body
     color black
     background white
 
+  .on-air
+    position absolute
+    width 200px
+    padding 0 20px
+    box-sizing border-box
+    text-align right
+    top 0
+    left -200px
+    overflow hidden
+    color #fff
+    span
+      position relative
+      left 200px
+      opacity 0
+      transition all ease-in-out 0.5s
+      -webkit-transition @transition
+      &:before
+        display block
+        position absolute
+        content " "
+        left -25px
+        width 20px
+        margin-top -(@width/2)
+        top 50%
+        height @width
+        border-radius @width
+        background red
+        z-index 100
+
+.is-playing #listen .on-air
+  span
+    left 0
+    opacity 1
 
 #live
   position absolute

@@ -8,7 +8,6 @@ block content
   audio#stream(src=stream.href)
 
   #now
-    span.now-playing
 
   #live
     .texture
@@ -18,6 +17,8 @@ block content
     i.play.fa.fa-play
     i.pause.fa.fa-pause.hidden
     span.text Escucha
+    span.now-playing
+    span.on-air: span Al&nbsp;aire
 
   #what(href="#")
     a(href="#programacion") Programación
@@ -62,9 +63,6 @@ block content
         h3 Cine más Allá
         span.who Con Mara y Garbiñe
 
-
-
-
   #warning
     p.
       Actualmente nos encontramos trabajando en nuestra página web y cabina de radio, este es un video en tiempo real de nuestro proceso.
@@ -80,6 +78,23 @@ block content
       de comunicación, redefiniendo al mismo tiempo el papel de la información
       en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
       y voz en el terreno de lo público.
+
+  #bio(style="display:none")
+    img(src="/img/bio-pic.jpg")
+    h2 Ricardo Pholenz
+    p.
+      Es poeta y escritor. Es el mayor de cinco hijos, todos varones, su padre
+      es ingeniero mecánico electricista y su madre estudió comercio, es una gran
+      administradora. Tiene una predilección especial por la comida oriental, en
+      especial los tallarines y los rollos primavera, tal vez como evocación y
+      homenaje de la segunda secuencia de Blade Runner. Una magdelena proustiana
+      como puede serlo también el Toma 5 del Cuarteto de Dave Brubeck, la secuencia
+      de los elefantes rosados en Dumbo, el sabor de los cruasanes (que puede llevarlo
+      a las lágrimas), las galletas de jengibre (que en Maque sólo hacen en
+    p.programa
+      h3 Los Sueños de una Nación
+      h4
+
 
 append scripts
   script(src="http://240891823.r.professionalcdn.com/jquery.shoutcast.easy.min.js?host=#{stream.host}&port=#{stream.port}&stream=1")
