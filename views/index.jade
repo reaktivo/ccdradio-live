@@ -5,95 +5,100 @@ block content
   script.
     window.STREAM = !{JSON.stringify(locals.stream)}
 
-  audio#stream(src=stream.href)
 
-  #now
-
-  #live
+  #background
     .texture
     .image.one
     .image.two
-  a#listen(href="#")
-    i.play.fa.fa-play
-    i.pause.fa.fa-pause.hidden
-    span.text Escucha
-    span.now-playing
-    span.on-air: span Al&nbsp;aire
 
-  #what(href="#")
+  #main
+    .escucha
+      .en-construccion
+        p.
+          Actualmente nos encontramos trabajando en nuestra página web y cabina de radio, este es un video en tiempo real de nuestro proceso.
+        p.
+          Te invitamos a escuchar nuestra programación.
+      a.escucha-btn(href="#")
+        audio(src=stream.href)
+        i.play.fa.fa-play
+        span.on-air: span Al&nbsp;aire
+        span.text Escucha
+        .label
+          span Estás escuchando:
+          span.now-playing CCD Radio
+
+
+    .acerca-de
+      :markdown
+        **CCD Radio** es una plataforma que genera propuestas de radio
+        originales con la intención de conformar una audiencia interesada
+        en conocer otras maneras de acercarse y resolver, formal y
+        temáticamente,  asuntos vinculados al transcurrir de nuestro tiempo,
+        donde la cultura digital ha contribuido a la reinvención de los medios
+        de comunicación, redefiniendo al mismo tiempo el papel de la información
+        en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
+        y voz en el terreno de lo público.
+
+    .bio
+      img(src="/img/bio-pic.jpg")
+      h2 Ricardo Pholenz
+      p.
+        Es poeta y escritor. Es el mayor de cinco hijos, todos varones, su padre
+        es ingeniero mecánico electricista y su madre estudió comercio, es una gran
+        administradora. Tiene una predilección especial por la comida oriental, en
+        especial los tallarines y los rollos primavera, tal vez como evocación y
+        homenaje de la segunda secuencia de Blade Runner. Una magdelena proustiana
+        como puede serlo también el Toma 5 del Cuarteto de Dave Brubeck, la secuencia
+        de los elefantes rosados en Dumbo, el sabor de los cruasanes (que puede llevarlo
+        a las lágrimas), las galletas de jengibre (que en Maque sólo hacen en
+      p.programa
+        h3 Los Sueños de una Nación
+        h4
+
+    .programacion
+      .calendario
+        .lunes
+          h2 Lunes
+          .show
+            span.time De 10 a 12
+            h3 Ositos Arritmicos de Lemuria
+            span.who Con Ricardo Pholenz
+        .martes
+          h2 Martes
+          .show
+            span.time De 10 a 12
+            h3 Mecánica Instrumental
+            span.who Con Alan Rabchinski
+        .miercoles
+          h2 Miercoles
+          .show
+            span.time De 9 a 11
+            h3 Sound Check
+            span.who Alejandro Misteró
+        .jueves
+          h2 Jueves
+          .show
+            span.time De 10 a 12
+            h3 Industria Musical
+            span.who Con Tomás Davo
+          .show
+            span.time De 12 a 2
+            h3 Los Sueños de la Nación
+            span.who Con Jorge Antonio P. E.
+        .viernes
+          h2 Viernes
+          .show
+            span.time De 12 a 1
+            h3 Cine más Allá
+            span.who Con Mara y Garbiñe
+
+
+  nav#main-nav(href="#")
+    a(href="#escucha") Escucha
+    span.spacer |
     a(href="#programacion") Programación
     span.spacer |
-    a(href="#contacto") Contacto
-    span.spacer |
-    a(href="#acerca") Acerca de
-
-  #programacion(style="display:none")
-    .lunes
-      h2 Lunes
-      .show
-        span.time De 10 a 12
-        h3 Ositos Arritmicos de Lemuria
-        span.who Con Ricardo Pholenz
-    .martes
-      h2 Martes
-      .show
-        span.time De 10 a 12
-        h3 Mecánica Instrumental
-        span.who Con Alan Rabchinski
-    .miercoles
-      h2 Miercoles
-      .show
-        span.time De 9 a 11
-        h3 Sound Check
-        span.who Alejandro Misteró
-    .jueves
-      h2 Jueves
-      .show
-        span.time De 10 a 12
-        h3 Industria Musical
-        span.who Con Tomás Davo
-      .show
-        span.time De 12 a 2
-        h3 Los Sueños de la Nación
-        span.who Con Jorge Antonio P. E.
-    .viernes
-      h2 Viernes
-      .show
-        span.time De 12 a 1
-        h3 Cine más Allá
-        span.who Con Mara y Garbiñe
-
-  #warning
-    p.
-      Actualmente nos encontramos trabajando en nuestra página web y cabina de radio, este es un video en tiempo real de nuestro proceso.
-    p.
-      Te invitamos a escuchar nuestra programación.
-  #about(style="display:none")
-    :markdown
-      **CCD Radio** es una plataforma que genera propuestas de radio
-      originales con la intención de conformar una audiencia interesada
-      en conocer otras maneras de acercarse y resolver, formal y
-      temáticamente,  asuntos vinculados al transcurrir de nuestro tiempo,
-      donde la cultura digital ha contribuido a la reinvención de los medios
-      de comunicación, redefiniendo al mismo tiempo el papel de la información
-      en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
-      y voz en el terreno de lo público.
-
-  #bio(style="display:none")
-    img(src="/img/bio-pic.jpg")
-    h2 Ricardo Pholenz
-    p.
-      Es poeta y escritor. Es el mayor de cinco hijos, todos varones, su padre
-      es ingeniero mecánico electricista y su madre estudió comercio, es una gran
-      administradora. Tiene una predilección especial por la comida oriental, en
-      especial los tallarines y los rollos primavera, tal vez como evocación y
-      homenaje de la segunda secuencia de Blade Runner. Una magdelena proustiana
-      como puede serlo también el Toma 5 del Cuarteto de Dave Brubeck, la secuencia
-      de los elefantes rosados en Dumbo, el sabor de los cruasanes (que puede llevarlo
-      a las lágrimas), las galletas de jengibre (que en Maque sólo hacen en
-    p.programa
-      h3 Los Sueños de una Nación
-      h4
+    a(href="#acerca-de") Acerca de
 
 
 append scripts

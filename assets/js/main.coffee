@@ -1,70 +1,39 @@
-#= require jquery.shoutcast
 #= require underscore
+#= require jquery.transit
+#= require ./ccdplayer
+#= require ./viewport
 
-{ toArray, each } = _
+{ each } = _
 
 class Main
 
-  path: '/camera'
-  containers: $('.image')
-  index: 0
-  isPlaying: no
-  els: ['#warning', '#listen', '#what']
+  main: $ '#main'
+  sections: $ '> div', '#main'
+  nav_links: $ '#main-nav a'
+  transform:
+    hide: { opacity: 0, scale: 0.95 }
+    show: { opacity: 1, scale: 1 }
 
   constructor: ->
-    $('#what a[href=#acerca]').click (e) =>
-      e.preventDefault()
-      @modal('#about')
-
-    $('#what a[href=#programacion]').click (e) =>
-      e.preventDefault()
-      @modal('#programacion')
-
-    $('#listen').click @toggle_audio
-    $('#close').click (e) =>
-      e.preventDefault()
-      do @hide
-    do @setup_shoutcast
-
-  toggle_audio: (e) =>
-    e.preventDefault()
-    if @isPlaying
-      $('#stream')[0].pause()
-      $('.pause', '#listen').hide()
-      $('.play', '#listen').show()
-    else
-      $('#stream')[0].play()
-      $('.pause', '#listen').show()
-      $('.play', '#listen').hide()
-    @isPlaying = not @isPlaying
-    $('body').toggleClass 'is-playing', @isPlaying
-
-  setup_shoutcast: =>
-    $.SHOUTcast
+    @activeSection = $ '.escucha', @main
+    @nav_links.click @nav_click
+    $(window).resize(@layout).resize()
+    @player = new CCDPlayer
+      btn: '.escucha-btn'
       host: window.STREAM.hostname
       port: window.STREAM.port
-      stats: @update_status
-    .startStats()
 
-  modal: (el, time = 500) =>
-    fadeIn = => @modalEl.delay(time).fadeIn()
-    if @modalEl
-      @modalEl.fadeOut(fadeIn)
-    else
-      fadeIn()
-    @modalEl = $(el)
-    $('#close').fadeIn()
+  nav_click: (e) =>
+    classStr = '.' + $(e.currentTarget).attr('href').substr(1)
+    @activeSection.animate @transform.hide, =>
+      @activeSection.hide()
+      @activeSection = $(classStr, @main)
+        .css(@transform.hide).show()
+        .animate @transform.show
+    return false
 
-    each @els, (sel) ->
-      $(sel).fadeOut()
+  layout: =>
+    @sections.css height: $.viewport().height
 
-  hide: (time = 500) =>
-    @modalEl.fadeOut()
-    $('#close').fadeOut()
-    each @els, (sel) =>
-      $(sel).delay(time).fadeIn()
-
-  update_status: ->
-    $('.now-playing').text @get 'songtitle'
-
-$(document).ready -> window.app = new Main
+$(document).ready ->
+  window.app = new Main
