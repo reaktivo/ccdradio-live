@@ -49,7 +49,6 @@ class Main
     false
 
   hide_detail: (e) =>
-    console.log 'hide_detail'
     calendar = $('.calendario').show()
     calendar.transition @transform.show
     @bio_container.transition @transform.hide2, => @bio_container.hide()
