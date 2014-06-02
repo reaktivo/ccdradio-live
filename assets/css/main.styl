@@ -51,7 +51,8 @@ body
 #main
   > div
     display none
-
+    box-sizing border-box
+    overflow hidden
   .escucha
     display block
 
@@ -154,35 +155,87 @@ body.is-playing #main .escucha
 #main
   .programacion
     position relative
-    margin 180px auto
-    margin-left auto
-    margin-right auto
-    box-sizing border-box
+    margin 0 auto
     width 900px
-    .calendario > div
-      float left
-      position relative
-      width 180px
-      h2
-        padding 20px
-      .show
-        position relative
-        padding 20px
-        border 4px solid white
-        border-bottom none
-        margin 0 -2px
-        top -4px
-        &:last-child
-          border-bottom @border
-        .time
-          color #ffb245
-          font-size 11px
-        .who
-          font-size 12px
-    .miercoles
-      top -80px
-    .viernes
+    .bio-container
+      position absolute
+      z-index 2
+      left 0
+      right 0
       top 80px
+      #bio
+        width 420px
+        max-width 100%
+        margin 0 auto
+        font-size 12px
+        line-height 1.6em
+        position relative
+        h1
+          font-weight bold
+          line-height 2em
+          margin-left 22px
+        h2
+          color #ffb54d
+          text-transform uppercase
+          font-weight bold
+          span
+            margin-right 1em
+          .schedule
+            font-weight normal
+        .about
+          border 4px solid
+          padding 20px
+        .show
+          border 4px solid
+          border-top none
+          padding 20px
+        .side
+          position absolute
+          width 160px
+          left -164px
+          top -40px
+          img
+            border 4px solid #fff
+            display block
+          a
+            color #fff
+            text-decoration none
+            text-align right
+            font-weight bold
+            display block
+
+    .calendario
+      position absolute
+      left 0
+      right 0
+      top 160px
+      > div
+        float left
+        position relative
+        width 180px
+        h2
+          padding 20px
+        a.show
+          color inherit
+          text-decoration none
+          display block
+          position relative
+          padding 20px
+          border 4px solid white
+          border-bottom none
+          margin 0 -2px
+          top -4px
+          &:last-child
+            border-bottom @border
+          .time
+            color #ffb245
+            font-size 11px
+          .who
+            font-size 12px
+      .miercoles
+        top -80px
+      .viernes
+        top 80px
 
   .acerca-de
     font-size 32px
@@ -191,6 +244,8 @@ body.is-playing #main .escucha
     strong
       font-weight bold
       border-bottom 3px solid white
+
+
 
 
 footer

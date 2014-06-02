@@ -8,3 +8,6 @@ module.exports = (app) ->
 
   app.get '/', (req, res) ->
     res.render 'index', title: 'CCD Radio'
+
+  app.get '/bios/:id', (req, res) ->
+    res.render "bios/#{req.params.id}"
