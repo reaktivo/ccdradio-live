@@ -22,6 +22,6 @@ plan.remote (remote) ->
   remote.with "cd #{dir}", ->
     remote.git 'pull'
     remote.npm 'install --production'
-    remote.exec "pm2 reload ccdradio"
+    remote.exec "pm2 reload #{dir}"
 
 module.exports = plan
