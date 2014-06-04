@@ -16,10 +16,14 @@ block content
   #main
     .escucha
       .en-construccion
-        p.
-          Actualmente nos encontramos trabajando en nuestra página web y cabina de radio, este es un video en tiempo real de nuestro proceso.
-        p.
-          Te invitamos a escuchar nuestra programación.
+        :markdown
+          Actualmente nos encontramos trabajando en nuestra
+          página web y cabina de radio, este es un video en
+          tiempo real de nuestro proceso.
+
+          Te invitamos a escuchar
+          nues&shy;tra pro&shy;gra&shy;ma&shy;ción.
+
       a.escucha-btn(href="#")
         audio(src=stream.href)
         i.play.fa.fa-play
@@ -31,15 +35,16 @@ block content
 
 
     .acerca-de
-      :markdown
-        **CCD Radio** es una plataforma que genera propuestas de radio
-        originales con la intención de conformar una audiencia interesada
-        en conocer otras maneras de acercarse y resolver, formal y
-        temáticamente,  asuntos vinculados al transcurrir de nuestro tiempo,
-        donde la cultura digital ha contribuido a la reinvención de los medios
-        de comunicación, redefiniendo al mismo tiempo el papel de la información
-        en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
-        y voz en el terreno de lo público.
+      .text
+        :markdown
+          **CCD Radio** es una plataforma que genera propuestas de radio
+          originales con la intención de conformar una audiencia interesada
+          en conocer otras maneras de acercarse y resolver, formal y
+          temáticamente,  asuntos vinculados al transcurrir de nuestro tiempo,
+          donde la cultura digital ha contribuido a la reinvención de los medios
+          de comunicación, redefiniendo al mismo tiempo el papel de la información
+          en nuestra vida cotidiana y potenciando el lugar y peso de nuestro pensamiento
+          y voz en el terreno de lo público.
 
     .programacion
       .bio-container
