@@ -18,6 +18,7 @@ class Main
     show: { opacity: 1, scale: 1 }
 
   constructor: ->
+    @sections.hide()
     $('.calendario .show').click @show_detail
     $('.bio-container').on 'click', 'a[href="#volver"]', @hide_detail
     @nav_links.click @nav_click
@@ -33,13 +34,15 @@ class Main
   nav_click: (e) =>
     section = $(e.currentTarget).attr('href').substr(1)
     @body.attr(id: section)
+    newSection = $(".#{section}", @main)
+    hook = @["#{section}_in"]
+    hook?()
     animateIn = =>
-      section = $(".#{section}", @main)
-      section
+      newSection
         .css @transform.hide
         .show()
         .transition @transform.show
-      @activeSection = section
+      @activeSection = newSection
 
     if @activeSection
       @activeSection.transition @transform.hide, =>
@@ -49,6 +52,8 @@ class Main
       do animateIn
 
     return false
+
+  programacion_in: => @hide_detail()
 
   show_detail: (e) =>
     href = e.currentTarget.href
@@ -60,9 +65,10 @@ class Main
     false
 
   hide_detail: (e) =>
-    calendar = $('.calendario').show()
-    calendar.transition @transform.show
-    @bio_container.transition @transform.hide2, => @bio_container.hide()
+    if $('.calendario').is(":visible")
+      calendar = $('.calendario').show()
+      calendar.transition @transform.show
+      @bio_container.transition @transform.hide2, => @bio_container.hide()
     false
 
   layout: =>
