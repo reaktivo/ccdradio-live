@@ -21,6 +21,9 @@ class Main
     $('.calendario .show').click @show_detail
     $('.bio-container').on 'click', 'a[href="#volver"]', @hide_detail
     @nav_links.click @nav_click
+    $('h1.ccdradio a')
+      .click @nav_click
+      .click()
     $(window).resize(@layout).resize()
     @player = new CCDPlayer
       btn: '.escucha-btn'
