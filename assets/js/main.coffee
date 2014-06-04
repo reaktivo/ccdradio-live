@@ -7,6 +7,7 @@
 
 class Main
 
+  body: $ 'body'
   main: $ '#main'
   sections: $ '> div', '#main'
   nav_links: $ '#main-nav a'
@@ -17,7 +18,6 @@ class Main
     show: { opacity: 1, scale: 1 }
 
   constructor: ->
-    @activeSection = $ '.escucha', @main
     $('.calendario .show').click @show_detail
     $('.bio-container').on 'click', 'a[href="#volver"]', @hide_detail
     @nav_links.click @nav_click
@@ -31,14 +31,22 @@ class Main
       port: window.STREAM.port
 
   nav_click: (e) =>
-    classStr = '.' + $(e.currentTarget).attr('href').substr(1)
+    section = $(e.currentTarget).attr('href').substr(1)
+    @body.attr(id: section)
     animateIn = =>
-      @activeSection.hide()
-      @activeSection = $(classStr, @main)
+      section = $(".#{section}", @main)
+      section
         .css @transform.hide
         .show()
         .transition @transform.show
-    @activeSection.transition @transform.hide, animateIn
+      @activeSection = section
+
+    if @activeSection
+      @activeSection.transition @transform.hide, =>
+        @activeSection.hide()
+        do animateIn
+    else
+      do animateIn
 
     return false
 
