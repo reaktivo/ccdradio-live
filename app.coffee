@@ -23,5 +23,7 @@ if 'development' is app.get('env')
 load 'routes'
   .into app
 
+app.locals.pretty = yes
+
 app.listen app.get('port'), ->
   console.log("Server listening on port #{app.get('port')}")
